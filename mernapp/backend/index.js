@@ -7,7 +7,6 @@ app.get("/", (req, res) => {
   res.send("Hello world!");
 });
 
-
 app.listen(port, async () => {
   try {
     await connect;
@@ -16,5 +15,5 @@ app.listen(port, async () => {
     console.log("Error connecting to Database");
     console.log(error);
   }
-  console.log(`App is runnign at port ${process.env.PORT}`);
+  console.log(`App is runnign at port ${port}`);
 });
