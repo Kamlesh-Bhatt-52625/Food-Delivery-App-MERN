@@ -15,5 +15,5 @@ app.listen(port, async () => {
     console.log("Error connecting to Database");
     console.log(error);
   }
-  console.log(`App is runnign at port ${port}`);
+  console.log(`App is live at port ${port}`);
 });
