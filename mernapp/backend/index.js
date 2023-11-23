@@ -2,10 +2,15 @@ const express = require("express");
 const app = express();
 const port = 8080;
 const connect = require("./db");
+const User = require("./models/User");
 
 app.get("/", (req, res) => {
-  res.send("Hello world!");
+  res.send("Hello World!");
 });
+
+app.use(express.json());
+
+app.use("/api", require("./Routes/CreateUser"));
 
 app.listen(port, async () => {
   try {
