@@ -39,24 +39,39 @@ router.post(
   }
 );
 
-router.post("/loginuser", async (req, res) => {
-  try {
+router.post(
+  "/loginuser",
+  [
+    // username must be an email
+    body("email").isEmail(),
+    // password must be at least 5 chars long
+    body("password", "Password must be alteast 5 characters.").isLength({
+      min: 5,
+    }),
+  ],
+  async (req, res) => {
     const { name, password, email, location } = req.body;
-    let userData = await User.findOne({ email });
-    if (!userData) {
-      return res.status(400).json({ errors: "Incorrect Credantials" });
+    // Finds the validation errors in this request and wraps them in an object with handy functions
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
     }
+    try {
+      let userData = await User.findOne({ email });
+      if (!userData) {
+        return res.status(400).json({ errors: "Incorrect Credantials" });
+      }
 
-    if(password === userData.password) {
-      
-    } 
+      if (password !== userData.password) {
+        return res.status(400).json({ errors: "Incorrect Credantials" });
+      }
 
-
-    res.json({ success: true });
-  } catch (error) {
-    console.log(error);
-    res.json({ success: false });
+      return res.json({ success: true });
+    } catch (error) {
+      console.log(error);
+      res.json({ success: false });
+    }
   }
-});
+);
 
 module.exports = router;

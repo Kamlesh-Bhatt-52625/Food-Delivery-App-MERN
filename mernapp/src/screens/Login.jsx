@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
+  let navigate = useNavigate();
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
@@ -9,7 +10,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch(`http://localhost:8080/api/createuser`, {
+    const response = await fetch(`http://localhost:8080/api/loginuser`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -25,6 +26,8 @@ const Login = () => {
 
     if (!json.success) {
       alert("Enter Valid Credentials");
+    } else {
+      navigate("/");
     }
   };
 
