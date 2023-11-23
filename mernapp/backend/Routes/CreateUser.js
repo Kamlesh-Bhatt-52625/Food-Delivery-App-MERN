@@ -39,4 +39,24 @@ router.post(
   }
 );
 
+router.post("/loginuser", async (req, res) => {
+  try {
+    const { name, password, email, location } = req.body;
+    let userData = await User.findOne({ email });
+    if (!userData) {
+      return res.status(400).json({ errors: "Incorrect Credantials" });
+    }
+
+    if(password === userData.password) {
+      
+    } 
+
+
+    res.json({ success: true });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false });
+  }
+});
+
 module.exports = router;
