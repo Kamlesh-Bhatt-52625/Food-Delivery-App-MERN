@@ -2,6 +2,9 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
 const { body, validationResult } = require("express-validator");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
+const jwtSecret = "MynameisKamleshBhatt";
 
 router.post(
   "/createuser",
@@ -22,11 +25,14 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
+    const { name, password, email, location } = req.body;
+    const salt = await bcrypt.genSalt(10);
+    let secPassword = await bcrypt.hash(password, salt);
+
     try {
-      const { name, password, email, location } = req.body;
       await User.create({
         name: name,
-        password: password,
+        password: secPassword,
         email: email,
         location: location,
       });
@@ -39,6 +45,7 @@ router.post(
   }
 );
 
+// Login
 router.post(
   "/loginuser",
   [
@@ -62,11 +69,21 @@ router.post(
         return res.status(400).json({ errors: "Incorrect Credantials" });
       }
 
-      if (password !== userData.password) {
+      const pwdCompare = await bcrypt.compare(password, userData.password);
+
+      if (!pwdCompare) {
         return res.status(400).json({ errors: "Incorrect Credantials" });
       }
 
-      return res.json({ success: true });
+      const data = {
+        user: {
+          id: userData.id,
+        },
+      };
+
+      const authToken = jwt.sign(data, jwtSecret);
+
+      return res.json({ success: true, authToken: authToken });
     } catch (error) {
       console.log(error);
       res.json({ success: false });

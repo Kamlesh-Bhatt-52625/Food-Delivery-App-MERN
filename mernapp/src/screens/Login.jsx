@@ -22,11 +22,13 @@ const Login = () => {
     });
     const json = await response.json();
     console.log(json);
-    console.log(credentials);
+    // console.log(credentials);
 
     if (!json.success) {
       alert("Enter Valid Credentials");
     } else {
+      localStorage.setItem("authToken", json.authToken);
+      console.log(localStorage.getItem("authToken"));
       navigate("/");
     }
   };
