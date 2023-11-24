@@ -4,6 +4,7 @@ const port = 8080;
 const connect = require("./db");
 const UserModel = require("./models/User");
 const FoodItemModel = require("./models/FoodItems");
+const FoodCategoryModel = require("./models/FoodCategory");
 
 app.use(express.json());
 app.use((req, res, next) => {
@@ -23,6 +24,16 @@ app.get("/getusers", (req, res) => {
   UserModel.find()
     .then((users) => res.json(users))
     .then((data) => console.log(data))
+    .catch((err) => res.json(err));
+});
+
+// Not working
+app.get("/getcategory", (req, res) => {
+  FoodCategoryModel.find()
+    .then((users) => res.json(users))
+    .then((data) => {
+      console.log(data);
+    })
     .catch((err) => res.json(err));
 });
 
