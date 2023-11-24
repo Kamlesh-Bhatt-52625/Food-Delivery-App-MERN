@@ -2,7 +2,10 @@ const express = require("express");
 const app = express();
 const port = 8080;
 const connect = require("./db");
+const UserModel = require("./models/User");
+const FoodItemModel = require("./models/FoodItems");
 
+app.use(express.json());
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
   res.header(
@@ -11,17 +14,27 @@ app.use((req, res, next) => {
   );
   next();
 });
-app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.use("/api", require("./Routes/CreateUser"));
+app.get("/getusers", (req, res) => {
+  UserModel.find()
+    .then((users) => res.json(users))
+    .then((data) => console.log(data))
+    .catch((err) => res.json(err));
+});
 
-app.listen(port, async () => {
+app.use("/api", require("./Routes/CreateUser"));
+app.use("/api", require("./Routes/DisplayData"));
+
+app.listen(port, async (req, res) => {
   try {
     await connect;
+    FoodItemModel.find().then((food_items) => {
+      global.food_items = food_items;
+    });
     console.log("Connected to Database");
   } catch (error) {
     console.log("Error connecting to Database");
