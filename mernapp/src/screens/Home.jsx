@@ -55,15 +55,9 @@ const Home = () => {
                 value={search}
                 onChange={(e) => {
                   setSearch(e.target.value);
-                  console.log(search);
                 }}
               />
 
-              {/* <button
-                className="btn btn-outline-success text-white bg-success"
-                type="submit">
-                Search
-              </button> */}
             </div>
           </div>
 
@@ -121,41 +115,43 @@ const Home = () => {
       </div>
 
       <div className="container">
-        {foodCategory
-          ? foodCategory.map((data) => {
-              return (
-                <div key={data._id} className="row mb-3">
-                  <div className="fs-3 m-3">{data.CategoryName}</div>
-                  <hr />
-                  {foodItem ? (
-                    foodItem
-                      .filter(
-                        (item) =>
-                          item.CategoryName === data.CategoryName &&
-                          item.name
-                            .toLowerCase()
-                            .includes(search.toLocaleLowerCase())
-                      )
-                      .map((filterItems) => {
-                        return (
-                          <div
-                            key={filterItems._id}
-                            className="col-12 col-md-6 col-lg-3">
-                            <Card
-                              foodName={filterItems.name}
-                              options={filterItems.options[0]}
-                              image={filterItems.img}
-                            />
-                          </div>
-                        );
-                      })
-                  ) : (
-                    <div>No Such Data Found</div>
-                  )}
-                </div>
-              );
-            })
-          : ""}
+        {foodCategory ? (
+          foodCategory.map((data) => {
+            return (
+              <div key={data._id} className="row mb-3">
+                <div className="fs-3 m-3">{data.CategoryName}</div>
+                <hr />
+                {foodItem ? (
+                  foodItem
+                    .filter(
+                      (item) =>
+                        item.CategoryName === data.CategoryName &&
+                        item.name
+                          .toLowerCase()
+                          .includes(search.toLocaleLowerCase())
+                    )
+                    .map((filterItems) => {
+                      return (
+                        <div
+                          key={filterItems._id}
+                          className="col-12 col-md-6 col-lg-3">
+                          <Card
+                            foodName={filterItems.name}
+                            options={filterItems.options[0]}
+                            image={filterItems.img}
+                          />
+                        </div>
+                      );
+                    })
+                ) : (
+                  <div>No Such Item Found</div>
+                )}
+              </div>
+            );
+          })
+        ) : (
+          <div>No Such Item Found</div>
+        )}
       </div>
 
       <div>
