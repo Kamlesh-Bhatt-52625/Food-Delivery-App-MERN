@@ -27,16 +27,6 @@ app.get("/getusers", (req, res) => {
     .catch((err) => res.json(err));
 });
 
-// Not working
-app.get("/getcategory", (req, res) => {
-  FoodCategoryModel.find()
-    .then((users) => res.json(users))
-    .then((data) => {
-      console.log(data);
-    })
-    .catch((err) => res.json(err));
-});
-
 app.use("/api", require("./Routes/CreateUser"));
 app.use("/api", require("./Routes/DisplayData"));
 
@@ -45,6 +35,10 @@ app.listen(port, async (req, res) => {
     await connect;
     FoodItemModel.find().then((food_items) => {
       global.food_items = food_items;
+    });
+
+    FoodCategoryModel.find().then((food_categories) => {
+      global.food_categories = food_categories;
     });
     console.log("Connected to Database");
   } catch (error) {

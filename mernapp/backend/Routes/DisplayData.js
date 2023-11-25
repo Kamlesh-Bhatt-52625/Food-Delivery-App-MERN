@@ -6,7 +6,7 @@ const FoodItemModel = require("../models/FoodItems");
 
 router.post("/foodData", (req, res) => {
   try {
-    res.send([global.food_items, global.food_category]);
+    res.send([global.food_items, global.food_categories]);
   } catch (error) {
     console.log(error.message);
     res.send("Server Error");
