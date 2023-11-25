@@ -1,6 +1,11 @@
 import React from "react";
 
-const Card = () => {
+const Card = (props) => {
+  const { foodName, image, options } = props;
+  // console.log(foodName);
+
+  let priceOptions = Object.keys(options);
+
   return (
     <div>
       <div>
@@ -13,8 +18,7 @@ const Card = () => {
             alt="..."
           />
           <div className="card-body">
-            <h5 className="card-title">Card title</h5>
-            <p className="card-text">It is the text for the card.</p>
+            <h5 className="card-title">{foodName}</h5>
             <div className="container wd-100">
               <select className="m-2 h-100 bg-success rounded">
                 {Array.from(Array(6), (e, i) => {
@@ -27,8 +31,13 @@ const Card = () => {
               </select>
 
               <select className="m-2 h-100 bg-success rounded">
-                <option value="half">Half</option>
-                <option value="full">Full</option>
+                {priceOptions.map((data) => {
+                  return (
+                    <option key={data} value={data}>
+                      {data}
+                    </option>
+                  );
+                })}
               </select>
 
               <div className="d-inline fs-5 h-100">Total Price</div>
