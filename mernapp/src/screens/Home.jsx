@@ -57,7 +57,6 @@ const Home = () => {
                   setSearch(e.target.value);
                 }}
               />
-
             </div>
           </div>
 
