@@ -6,17 +6,19 @@ const Card = (props) => {
 
   let priceOptions = Object.keys(options);
 
+  const handleAddToCart = () => {};
+
   return (
     <div>
       <div>
         <div
           className="card mt-3"
-          style={{ width: "18rem", maxHeight: "360px" }}>
+          style={{ width: "18rem", maxHeight: "395px" }}>
           <img
             src={image}
             className="card-img-top"
             alt="..."
-            style={{ height: "205px", objectFit: "fill" }}
+            style={{ height: "185px", objectFit: "fill" }}
           />
           <div className="card-body">
             <h5 className="card-title">{foodName}</h5>
@@ -43,6 +45,12 @@ const Card = (props) => {
 
               <div className="d-inline fs-5 h-100">Total Price</div>
             </div>
+            <hr />
+            <button
+              className={`btn btn-success justify-center ms-2`}
+              onClick={handleAddToCart}>
+              Add to Cart
+            </button>
           </div>
         </div>
       </div>
