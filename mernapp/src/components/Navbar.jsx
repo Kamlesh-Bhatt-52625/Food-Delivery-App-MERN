@@ -75,7 +75,7 @@ const Navbar = () => {
                   }}>
                   Cart{" "}
                   <Badge pill bg="danger">
-                    {data.length}
+                    {data.length ? data.length : ""}
                   </Badge>
                 </div>
                 {cartView ? (
