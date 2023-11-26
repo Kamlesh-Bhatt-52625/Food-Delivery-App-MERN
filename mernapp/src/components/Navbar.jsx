@@ -3,8 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import Badge from "react-bootstrap/Badge";
 import Modal from "../Modal";
 import Cart from "../screens/Cart";
+import { useCart } from "./ContextReducer";
 
 const Navbar = () => {
+  let data = useCart();
   const [cartView, setCartView] = useState(false);
   const navigate = useNavigate();
   const handleLogout = () => {
@@ -73,7 +75,7 @@ const Navbar = () => {
                   }}>
                   Cart{" "}
                   <Badge pill bg="danger">
-                    2
+                    {data.length}
                   </Badge>
                 </div>
                 {cartView ? (
