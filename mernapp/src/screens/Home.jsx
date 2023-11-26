@@ -66,6 +66,9 @@ const Home = () => {
               className="d-block w-100"
               style={{
                 filter: "brightness(40%)",
+                height: "600px",
+                width: "100%",
+                objectFit: "cover",
               }}
               alt="..."
             />
@@ -76,6 +79,9 @@ const Home = () => {
               className="d-block w-100"
               style={{
                 filter: "brightness(40%)",
+                height: "600px",
+                width: "100%",
+                objectFit: "cover",
               }}
               alt="..."
             />
@@ -86,6 +92,9 @@ const Home = () => {
               className="d-block w-100"
               style={{
                 filter: "brightness(40%)",
+                height: "600px",
+                width: "100%",
+                objectFit: "cover",
               }}
               alt="..."
             />
