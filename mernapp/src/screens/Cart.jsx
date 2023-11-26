@@ -1,6 +1,6 @@
 import React from "react";
 import { useCart, useDispatchCart } from "../components/ContextReducer";
-import Delete from "@material-ui/icons/Delete";
+import { MdDeleteOutline } from "react-icons/md";
 
 const Cart = () => {
   let data = useCart();
@@ -41,7 +41,7 @@ const Cart = () => {
               <td>{food.price}</td>
               <td>
                 <button type="button" className="btn p-0">
-                  <Delete
+                  <MdDeleteOutline
                     onClick={() => {
                       dispatch({ type: "REMOVE", index: index });
                     }}
