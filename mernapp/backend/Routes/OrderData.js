@@ -21,7 +21,7 @@ router.post("/orderData", async (req, res) => {
       });
     } catch (error) {
       console.log(error.message);
-      res.send("Server Error", error.message);
+      res.json({ success: false });
     }
   } else {
     try {
@@ -33,7 +33,7 @@ router.post("/orderData", async (req, res) => {
       });
     } catch (error) {
       console.log(error.message);
-      res.send("Server Error", error.message);
+      res.json({ success: false });
     }
   }
 });
@@ -43,7 +43,7 @@ router.post("/myorderData", async (req, res) => {
     let myData = await Order.findOne({ email: req.body.email });
     res.json({ orderData: myData });
   } catch (error) {
-    res.send("Server Error", error.message);
+    res.json({ success: false });
   }
 });
 
