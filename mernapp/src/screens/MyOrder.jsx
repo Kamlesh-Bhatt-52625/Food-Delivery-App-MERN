@@ -51,7 +51,7 @@ const MyOrder = () => {
                               <hr />
                             </div>
                           ) : (
-                            <div className="card-columns col-12 col-md-6 col-lg-3">
+                            <div className=" col-12 col-md-6 col-lg-3">
                               <div
                                 className="card mt-3"
                                 style={{
