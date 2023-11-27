@@ -21,16 +21,16 @@ const Login = () => {
       }),
     });
     const json = await response.json();
-    console.log(json);
-    console.log(credentials);
+    // console.log(json);
+    // console.log(credentials);
 
     if (!json.success) {
       alert("Enter Valid Credentials");
     } else {
       localStorage.setItem("userEmail", credentials.email);
       localStorage.setItem("authToken", json.authToken);
-      console.log(localStorage.getItem("authToken"));
-      console.log(localStorage.getItem("userEmail"));
+      // console.log(localStorage.getItem("authToken"));
+      // console.log(localStorage.getItem("userEmail"));
       navigate("/");
     }
   };
