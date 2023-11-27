@@ -29,6 +29,7 @@ app.get("/getusers", (req, res) => {
 
 app.use("/api", require("./Routes/CreateUser"));
 app.use("/api", require("./Routes/DisplayData"));
+app.use("/api", require("./Routes/OrderData"));
 
 app.listen(port, async (req, res) => {
   try {
