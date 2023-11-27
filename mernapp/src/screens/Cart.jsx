@@ -3,6 +3,21 @@ import { useCart, useDispatchCart } from "../components/ContextReducer";
 import { MdDeleteOutline } from "react-icons/md";
 
 const Cart = () => {
+  let current = new Date();
+  let cDate =
+    current.getDate() +
+    "-" +
+    (current.getMonth() + 1) +
+    "-" +
+    current.getFullYear();
+  let cTime =
+    current.getHours() +
+    ":" +
+    current.getMinutes() +
+    ":" +
+    current.getSeconds();
+  let dateTime = cDate + " - " + cTime;
+
   let data = useCart();
   let dispatch = useDispatchCart();
 
@@ -27,7 +42,7 @@ const Cart = () => {
       body: JSON.stringify({
         order_data: data,
         email: userEmail,
-        order_date: new Date().toDateString(),
+        order_date: dateTime,
       }),
     });
     // console.log("Order response", res);
