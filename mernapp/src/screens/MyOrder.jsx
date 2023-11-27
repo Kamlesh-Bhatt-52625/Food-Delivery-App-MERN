@@ -20,6 +20,10 @@ const MyOrder = () => {
     });
   };
 
+  const handleClick = () => {
+    navigate("/");
+  };
+
   useEffect(() => {
     fetchMyOrder();
   }, []);
@@ -47,7 +51,7 @@ const MyOrder = () => {
                               <hr />
                             </div>
                           ) : (
-                            <div className="col-12 col-md-6 col-lg-3">
+                            <div className="card-columns col-12 col-md-6 col-lg-3">
                               <div
                                 className="card mt-3"
                                 style={{
@@ -60,7 +64,7 @@ const MyOrder = () => {
                                       alt="..."
                                       style={{}}
                                     /> */}
-                                <div className="card-body">
+                                <div className="card-body c">
                                   <h5 className="card-title">
                                     {arrayData.name}
                                   </h5>
@@ -89,7 +93,10 @@ const MyOrder = () => {
                   <div className="m-5 w-100 text-center fs-3">
                     Hungry? Let your fingers do the ordering. Your favorite meal
                     is just a click away!{" "}
-                    <button type="button" className="d-inline btn btn-success">
+                    <button
+                      type="button"
+                      className="d-inline btn btn-success"
+                      onClick={handleClick}>
                       Order Here
                     </button>
                   </div>
