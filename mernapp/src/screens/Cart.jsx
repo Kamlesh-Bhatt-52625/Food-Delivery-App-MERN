@@ -18,7 +18,7 @@ const Cart = () => {
 
   const handleCheckOut = async () => {
     let userEmail = localStorage.getItem("userEmail");
-    console.log("UserEmail", userEmail);
+    // console.log("UserEmail", userEmail);
     let res = await fetch("http://localhost:8080/api/orderData", {
       method: "POST",
       headers: {
@@ -30,9 +30,11 @@ const Cart = () => {
         order_date: new Date().toDateString(),
       }),
     });
-    console.log("Order response", res);
+    // console.log("Order response", res);
     if (res.status === 200) {
       dispatch({ type: "DROP" });
+      let time = Math.floor(Math.random() * 50) + 20;
+      alert(`The food will be deliverd to you within ${time} minutes`);
     }
   };
 
